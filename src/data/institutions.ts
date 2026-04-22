@@ -4,6 +4,8 @@ export type Institution = {
   issues: string[];
   instructions: string[];
   contactHint: string;
+  email: string;
+  publicEmails: string[];
 };
 
 export const institutions: Institution[] = [
@@ -23,6 +25,8 @@ export const institutions: Institution[] = [
       "Menționează, dacă se poate, numărul de înmatriculare.",
     ],
     contactHint: "Verifică datele de contact ale Poliției Locale din orașul tău.",
+    email: "adresa1@exemplu.com",
+    publicEmails: ["adresa1@exemplu.com"],
   },
   {
     id: "brigada-rutiera",
@@ -40,6 +44,8 @@ export const institutions: Institution[] = [
       "Include numărul de înmatriculare dacă îl ai.",
     ],
     contactHint: "Verifică site-ul Poliției Române sau al Brigăzii Rutiere competente.",
+    email: "adresa2@exemplu.com",
+    publicEmails: ["adresa2@exemplu.com"],
   },
   {
     id: "administrator-drum",
@@ -57,5 +63,7 @@ export const institutions: Institution[] = [
       "Spune dacă problema afectează siguranța rutieră.",
     ],
     contactHint: "Verifică Primăria sau administratorul drumului pentru zona respectivă.",
+    email: "adresa1@exemplu.com",
+    publicEmails: ["adresa1@exemplu.com"],
   },
 ];
