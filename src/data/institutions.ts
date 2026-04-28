@@ -3,7 +3,6 @@ export type Institution = {
   title: string;
   issues: string[];
   instructions: string[];
-  contactHint: string;
   email: string;
   publicEmails: string[];
 };
@@ -11,7 +10,7 @@ export type Institution = {
 export const institutions: Institution[] = [
   {
     id: "politia-locala",
-    title: "Poliția Locală",
+    title: "Poliția Locală București",
     issues: [
       "parcare neregulamentară",
       "ocupare trotuar",
@@ -19,51 +18,85 @@ export const institutions: Institution[] = [
       "blocare acces",
     ],
     instructions: [
-      "Descrie locația exactă.",
-      "Menționează data și ora.",
-      "Atașează poze clare din care se vede situația.",
-      "Menționează, dacă se poate, numărul de înmatriculare.",
+      "Descrie locația exactă (stradă, reper).",
+      "Menționează ora aproximativă.",
+      "Atașează poze clare.",
+      "Include numărul de înmatriculare dacă este posibil.",
     ],
-    contactHint: "Verifică datele de contact ale Poliției Locale din orașul tău.",
-    email: "adresa1@exemplu.com",
-    publicEmails: ["adresa1@exemplu.com"],
+    email: "politialocala@pmb.ro",
+    publicEmails: ["politialocala@pmb.ro"],
   },
+
   {
     id: "brigada-rutiera",
-    title: "Brigada Rutieră",
+    title: "Brigada Rutieră București",
     issues: [
       "conducere agresivă",
       "trecere pe roșu",
-      "blocare intersecție",
       "neacordare prioritate",
+      "blocare intersecție",
     ],
     instructions: [
-      "Descrie incidentul cât mai clar.",
-      "Menționează strada, sensul de mers și ora aproximativă.",
-      "Atașează dovezi foto sau video dacă există.",
-      "Include numărul de înmatriculare dacă îl ai.",
+      "Descrie incidentul clar.",
+      "Menționează locația și ora.",
+      "Include numărul de înmatriculare.",
+      "Atașează dovezi dacă există.",
     ],
-    contactHint: "Verifică site-ul Poliției Române sau al Brigăzii Rutiere competente.",
-    email: "adresa2@exemplu.com",
-    publicEmails: ["adresa2@exemplu.com"],
+    email: "brigada.rutiera@b.politiaromana.ro",
+    publicEmails: ["brigada.rutiera@b.politiaromana.ro"],
   },
+
   {
-    id: "administrator-drum",
-    title: "Administratorul drumului / Primăria",
+    id: "administratia-strazilor",
+    title: "Administrația Străzilor București",
     issues: [
+      "marcaj rutier necorespunzător",
+      "lipsă marcaje",
+      "lipsă stâlpișori",
+      "organizare trafic defectuoasă",
       "groapă",
-      "semafor defect",
       "indicator lipsă",
-      "marcaj șters",
+      "semafor defect",
     ],
     instructions: [
-      "Descrie problema exactă.",
-      "Menționează locația cât mai precis.",
+      "Descrie problema cât mai clar.",
+      "Explică cum afectează traficul.",
+      "Menționează locația exactă.",
       "Atașează poze relevante.",
-      "Spune dacă problema afectează siguranța rutieră.",
     ],
-    contactHint: "Verifică Primăria sau administratorul drumului pentru zona respectivă.",
-    email: "adresa1@exemplu.com",
-    publicEmails: ["adresa1@exemplu.com"],
+    email: "office@aspmb.ro",
+    publicEmails: ["office@aspmb.ro"],
+  },
+
+  {
+    id: "stb",
+    title: "STB (Transport Public București)",
+    issues: [
+      "blocare linie tramvai",
+      "probleme transport public",
+    ],
+    instructions: [
+      "Descrie situația exactă.",
+      "Menționează linia de transport.",
+      "Atașează dovezi dacă există.",
+    ],
+    email: "relatiipublice@stbsa.ro",
+    publicEmails: ["relatiipublice@stbsa.ro"],
+  },
+
+  {
+    id: "primaria",
+    title: "Primăria Municipiului București",
+    issues: [
+      "alte probleme trafic",
+      "sesizare generală",
+    ],
+    instructions: [
+      "Descrie problema în detaliu.",
+      "Menționează locația.",
+      "Atașează dovezi dacă există.",
+    ],
+    email: "contact@pmb.ro",
+    publicEmails: ["contact@pmb.ro"],
   },
 ];
