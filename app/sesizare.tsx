@@ -31,6 +31,7 @@ export default function SesizareScreen() {
   const [locatie, setLocatie] = useState("");
   const [detalii, setDetalii] = useState("");
   const [selectedIssue, setSelectedIssue] = useState("");
+  const [selectedSector, setSelectedSector] = useState("");
   const [attachedFiles, setAttachedFiles] = useState<
     { name: string; uri: string; mimeType?: string }[]
   >([]);
@@ -55,6 +56,19 @@ export default function SesizareScreen() {
   const institution =
     selectedIssue && !isCustomIssue ? matchInstitution(selectedIssue) : null;
 
+  const getRecipientEmail = () => {
+  if (!institution) return "";
+
+  if (institution.sectors) {
+    const sector = institution.sectors.find(
+      (s) => s.sector === selectedSector
+    );
+    return sector?.email || "";
+  }
+
+  return institution.email;
+};
+
   const suggestedText = selectedIssue
     ? `Bună ziua,
 
@@ -65,7 +79,8 @@ Detalii suplimentare: ${detalii || "Nu au fost adăugate detalii suplimentare."}
 
 Vă rog să analizați situația și să dispuneți măsurile necesare.
 
-Vă mulțumesc.`
+Vă mulțumesc!
+- trimis cu ajutorul SeficBuc -`
     : "";
 
   const handleCopyEmail = async (email: string) => {
@@ -205,9 +220,14 @@ Vă mulțumesc.`
       );
     }
 
+    if (institution?.sectors && !selectedSector) {
+  Alert.alert("Selectează sectorul");
+  return;
+    }
+
     try {
       const result = await MailComposer.composeAsync({
-        recipients: isCustomIssue ? [] : institution ? [institution.email] : [],
+        recipients: isCustomIssue ? [] : [getRecipientEmail()],
         subject: `Sesizare trafic - ${selectedIssue}`,
         body: suggestedText,
         attachments: attachedFiles.map((file) => file.uri),
@@ -231,7 +251,7 @@ Vă mulțumesc.`
       setSuccessMessage(
         isCustomIssue
           ? "Sesizarea a fost pregătită și trimisă. Dacă ai ales Personalizat, verifică faptul că ai lipit manual adresa corectă în câmpul Destinatar."
-          : `Sesizarea a fost pregătită și trimisă către ${institution?.title}. Te rugăm să urmărești răspunsul în aplicația de mail folosită pe telefon.`
+          : `Sesizarea a fost pregătită și trimisă către ${institution?.title}. Te rugăm să urmărești răspunsul pe mail.`
       );
     } catch {
       Alert.alert("Eroare", "A apărut o problemă la deschiderea emailului.");
@@ -263,6 +283,7 @@ Vă mulțumesc.`
                 setSelectedIssue(issue);
                 setProblema(issue);
                 setSuccessMessage("");
+                setSelectedSector("");
               }}
             >
               <Text
@@ -330,11 +351,39 @@ Vă mulțumesc.`
 
       {institution ? (
         <View style={styles.resultCard}>
-          <Text style={styles.resultTitle}>Instituția competentă</Text>
+          {institution?.sectors && (
+  <View style={styles.resultCard}>
+    <Text style={styles.resultTitle}>Selectează sectorul</Text>
+
+    <View style={styles.issuesContainer}>
+      {institution.sectors.map((s) => {
+        const selected = selectedSector === s.sector;
+
+        return (
+          <Pressable
+            key={s.sector}
+            style={[
+              styles.issueChip,
+              selected && styles.issueChipSelected,
+            ]}
+            onPress={() => setSelectedSector(s.sector)}
+          >
+            <Text
+              style={[
+                styles.issueChipText,
+                selected && styles.issueChipTextSelected,
+              ]}
+            >
+              {s.sector}
+            </Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  </View>
+        )}
+          <Text style={styles.resultTitle}>Instituția competentă:</Text>
           <Text style={styles.resultInstitution}>{institution.title}</Text>
-          <Text style={styles.resultText}>
-            Sesizarea va fi pregătită pentru: {institution.email}
-          </Text>
 
           <Text style={styles.resultSubtitle}>Instrucțiuni</Text>
           {institution.instructions.map((instruction) => (
@@ -377,6 +426,8 @@ Vă mulțumesc.`
         </View>
       ) : null}
 
+      
+
       <Pressable style={styles.button} onPress={handleSendEmail}>
         <Text style={styles.buttonText}>Trimite prin email</Text>
       </Pressable>
@@ -384,7 +435,7 @@ Vă mulțumesc.`
       {successMessage ? (
         <View style={styles.successCard}>
           <Text style={styles.successIcon}>✅</Text>
-          <Text style={styles.successTitle}>Operațiune reușită</Text>
+          <Text style={styles.successTitle}>Operațiune reușită!</Text>
           <Text style={styles.successText}>{successMessage}</Text>
         </View>
       ) : null}
