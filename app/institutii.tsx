@@ -26,7 +26,7 @@ export default function InstitutiiScreen() {
           {/* POLITIA LOCALA CU SECTOARE */}
           {inst.sectors ? (
             <>
-              <Text style={styles.subtitle}>Contact pe sectoare:</Text>
+              <Text style={styles.subtitle}>Contact:</Text>
 
               {inst.sectors.map((s) => (
                 <View key={s.sector} style={styles.sectorBox}>

@@ -27,6 +27,8 @@ function matchInstitution(issue: string) {
 }
 
 export default function SesizareScreen() {
+  const [nume, setNume] = useState("");
+  const [adresa, setAdresa] = useState("");
   const [problema, setProblema] = useState("");
   const [locatie, setLocatie] = useState("");
   const [detalii, setDetalii] = useState("");
@@ -71,6 +73,10 @@ export default function SesizareScreen() {
 
   const suggestedText = selectedIssue
     ? `Bună ziua,
+
+Subsemnatul(a): ${nume || "—"}
+
+Domiciliat(ă) în: ${adresa || "—"}
 
 Doresc să semnalez următoarea problemă: ${selectedIssue}.
 
@@ -190,8 +196,8 @@ Vă mulțumesc!
   };
 
   const handleSendEmail = async () => {
-    if (!selectedIssue || !locatie.trim()) {
-      Alert.alert("Date incomplete", "Completează problema și locația.");
+    if (!selectedIssue || !locatie.trim() || !nume.trim() || !adresa.trim()) {
+      Alert.alert("Date incomplete", "Completează toate câmpurile obligatorii.");
       return;
     }
 
@@ -309,6 +315,25 @@ Vă mulțumesc!
           setSuccessMessage("");
         }}
       />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Nume complet"
+        value={nume}
+        onChangeText={setNume}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Adresă domiciliu / reședință"
+        value={adresa}
+        onChangeText={setAdresa}
+      />
+
+      <Text style={{ fontSize: 13, color: "#555", marginBottom: 10 }}>
+        Datele NU sunt stocate de aplicație. Ele vor fi incluse doar în corpul mail-ului.
+      </Text>
+
 
       <TextInput
         style={styles.input}
