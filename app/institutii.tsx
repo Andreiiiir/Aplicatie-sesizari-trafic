@@ -44,15 +44,17 @@ export default function InstitutiiScreen() {
             </>
           ) : (
             <>
-              <Text style={styles.subtitle}>Email:</Text>
+            <Text style={styles.subtitle}>Contact:</Text>
+
+            <View style={styles.sectorBox}>
               <Pressable onPress={() => openEmail(inst.email!)}>
                 <Text style={styles.link}>{inst.email}</Text>
               </Pressable>
 
-              <Text style={styles.subtitle}>Telefon:</Text>
               <Pressable onPress={() => openPhone(inst.phone!)}>
                 <Text style={styles.link}>{inst.phone}</Text>
               </Pressable>
+            </View>
             </>
           )}
         </View>
