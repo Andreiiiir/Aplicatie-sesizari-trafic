@@ -3,35 +3,36 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 export default function CumFunctioneazaScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Cum funcționează aplicația</Text>
-
       <Text style={styles.text}>
-        Aplicația facilitează trimiterea unei sesizări către instituțiile competente
-        din București.
+      Aplicația te ajută să trimiți rapid sesizări către instituțiile competente din București.
       </Text>
 
       <Text style={styles.text}>
-        După completarea formularului, aplicația NU trimite direct sesizarea,
-        ci deschide aplicația de email de pe telefonul tău.
+      Completezi formularul, alegi problema, adaugi locația și detalii, iar aplicația deschide automat emailul pregătit pentru trimitere.
       </Text>
 
       <Text style={styles.text}>
-        Mesajul este deja completat automat, iar tu trebuie doar să îl trimiți.
+      Pentru ca sesizarea să fie luată în considerare de instituții, este necesar să completezi numele complet și adresa de domiciliu sau reședință.
       </Text>
 
       <Text style={styles.text}>
-        Este necesar să ai configurat un cont de email pe telefon (ex: Mail, Gmail)
-        pentru ca funcția să funcționeze corect.
+      Datele introduse NU sunt stocate și NU sunt transmise către servere externe. Acestea sunt folosite doar pentru completarea emailului trimis de tine.
       </Text>
 
       <Text style={styles.text}>
-        În cazul în care alegi opțiunea „Personalizat”, va trebui să copiezi manual
-        adresa de email și să o lipești în câmpul „Destinatar”.
+      Poți atașa poze sau documente relevante direct din aplicație pentru a susține sesizarea.
       </Text>
 
       <Text style={styles.text}>
-        Aplicația nu stochează și nu trimite datele tale — totul este gestionat
-        prin aplicația ta de email.
+      În cazul sesizărilor către Poliția Locală, trebuie să selectezi sectorul, pentru a trimite mesajul către unitatea corectă.
+      </Text>
+
+      <Text style={styles.text}>
+      Aplicația NU trimite automat emailul — acesta este deschis în aplicația ta de mail (Gmail, Mail etc.), iar tu trebuie doar să confirmi trimiterea.
+      </Text>
+
+      <Text style={styles.text}>
+      Este necesar să ai configurat un cont de email pe telefon pentru ca funcția să funcționeze.
       </Text>
     </ScrollView>
   );

@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 import * as Clipboard from "expo-clipboard";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
@@ -38,6 +40,38 @@ export default function SesizareScreen() {
     { name: string; uri: string; mimeType?: string }[]
   >([]);
   const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await AsyncStorage.getItem("userData");
+
+        if (data) {
+          const parsed = JSON.parse(data);
+          setNume(parsed.nume || "");
+          setAdresa(parsed.adresa || "");
+        }
+      } catch {
+        console.log("Eroare citire date");
+      }
+    };
+
+    loadData();
+  }, []);
+
+  const saveUserData = async () => {
+    try {
+      await AsyncStorage.setItem(
+        "userData",
+        JSON.stringify({
+          nume,
+          adresa,
+        })
+      );
+    } catch {
+      console.log("Eroare salvare");
+    }
+  };
 
   const allIssues = useMemo(() => {
     const issues = institutions.flatMap((institution) => institution.issues);
@@ -254,6 +288,8 @@ Vă mulțumesc!
         return;
       }
 
+      await saveUserData();
+
       setSuccessMessage(
         isCustomIssue
           ? "Sesizarea a fost pregătită și trimisă. Dacă ai ales Personalizat, verifică faptul că ai lipit manual adresa corectă în câmpul Destinatar."
@@ -330,9 +366,23 @@ Vă mulțumesc!
         onChangeText={setAdresa}
       />
 
+
+
       <Text style={{ fontSize: 13, color: "#555", marginBottom: 10 }}>
-        Datele NU sunt stocate de aplicație. Ele vor fi incluse doar în corpul mail-ului.
+        Numele / Adresa sunt salvate pentru conveniență, doar pe dispozitivul tău. Sunt necesare pentru sesizări conform art. 7 din OG nr. 27/2002. Vor fi incluse în corpul mail-ului.
       </Text>
+
+      <Pressable
+        onPress={async () => {
+          await AsyncStorage.removeItem("userData");
+          setNume("");
+          setAdresa("");
+        }}
+      >
+        <Text style={{ color: "red", marginBottom: 10 }}>
+          Șterge datele salvate
+        </Text>
+      </Pressable>
 
 
       <TextInput
