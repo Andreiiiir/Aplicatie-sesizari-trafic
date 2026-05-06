@@ -32,13 +32,19 @@ export default function InstitutiiScreen() {
                 <View key={s.sector} style={styles.sectorBox}>
                   <Text style={{ fontWeight: "600" }}>{s.sector}</Text>
 
-                  <Pressable onPress={() => openEmail(s.email)}>
-                    <Text style={styles.link}>{s.email}</Text>
-                  </Pressable>
+                    <Pressable
+                      style={styles.contactTouch}
+                      onPress={() => openEmail(s.email)}
+                    >
+                      <Text style={styles.link}>{s.email}</Text>
+                    </Pressable>
 
-                  <Pressable onPress={() => openPhone(s.phone)}>
-                    <Text style={styles.link}>{s.phone}</Text>
-                  </Pressable>
+                    <Pressable
+                      style={styles.contactTouch}
+                      onPress={() => openPhone(s.phone)}
+                    >
+                      <Text style={styles.link}>{s.phone}</Text>
+                    </Pressable>
                 </View>
               ))}
             </>
@@ -47,11 +53,17 @@ export default function InstitutiiScreen() {
             <Text style={styles.subtitle}>Contact:</Text>
 
             <View style={styles.sectorBox}>
-              <Pressable onPress={() => openEmail(inst.email!)}>
+              <Pressable
+                style={styles.contactTouch}
+                onPress={() => openEmail(inst.email!)}
+              >
                 <Text style={styles.link}>{inst.email}</Text>
               </Pressable>
 
-              <Pressable onPress={() => openPhone(inst.phone!)}>
+              <Pressable
+                style={styles.contactTouch}
+                onPress={() => openPhone(inst.phone!)}
+              >
                 <Text style={styles.link}>{inst.phone}</Text>
               </Pressable>
             </View>
@@ -64,6 +76,10 @@ export default function InstitutiiScreen() {
 }
 
 const styles = StyleSheet.create({
+  contactTouch: {
+  paddingVertical: 8,
+  paddingHorizontal: 4,
+},
   container: { padding: 20 },
   title: { fontSize: 26, fontWeight: "700", marginBottom: 20 },
   card: {
@@ -77,8 +93,10 @@ const styles = StyleSheet.create({
   link: { color: "blue", marginTop: 4 },
   sectorBox: {
     marginTop: 8,
-    padding: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
     backgroundColor: "#fff",
     borderRadius: 8,
+    justifyContent: "space-between",
   },
 });
