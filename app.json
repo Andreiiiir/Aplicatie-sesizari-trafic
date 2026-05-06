@@ -1,49 +1,41 @@
 {
   "expo": {
-    "name": "sesizari-trafic-54",
-    "slug": "sesizari-trafic-54",
+    "name": "SeficBuc",
+    "slug": "seficbuc",
     "version": "1.0.0",
     "orientation": "portrait",
+
     "icon": "./assets/images/icon.png",
-    "scheme": "sesizaritrafic54",
+
+    "scheme": "seficbuc",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ro.seficbuc.app"
     },
+
     "android": {
+      "package": "ro.seficbuc.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
-    "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
+
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
-          "dark": {
-            "backgroundColor": "#000000"
-          }
-        }
-      ],
       "expo-mail-composer"
     ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    }
+
+    "assetBundlePatterns": [
+      "**/*"
+    ]
   }
 }
