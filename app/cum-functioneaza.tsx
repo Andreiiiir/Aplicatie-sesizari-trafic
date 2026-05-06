@@ -3,44 +3,43 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 export default function CumFunctioneazaScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Cum funcționează aplicația</Text>
 
       <Text style={styles.text}>
-        Aplicația te ajută să trimiți rapid sesizări către instituțiile competente din București.
+        1. Aplicația "SeficBuc. - Sesizări trafic București" te ajută să trimiți rapid sesizări către instituțiile competente din București.
       </Text>
 
       <Text style={styles.text}>
-        Alegi problema, completezi detaliile și aplicația îți pregătește automat emailul.
+        2. Alegi problema, completezi detaliile și aplicația îți pregătește automat emailul cu sesizarea, gata de trimis.
       </Text>
 
       <Text style={styles.text}>
-        Emailul NU este trimis automat — se deschide aplicația ta de mail, iar tu trebuie doar să apeși „Trimite”.
+        3. Emailul NU este trimis automat — apliația deschide aplicația ta de mail, cu sesizarea pregătită, iar tu trebuie doar să o trimiți.
       </Text>
 
       <Text style={styles.text}>
-        Este necesar să ai configurat un cont de email pe telefon (ex: Mail sau Gmail).
+        4. Pentru ca aplicația SeficBuc să funcționeze este necesar să ai configurat un cont de email pe telefon (ex: Mail sau Gmail).
       </Text>
 
       <Text style={styles.text}>
-        În secțiunea „Instituții” poți contacta direct autoritățile:
+        5. În secțiunea „Instituții” poți contacta direct autoritățile, fără a te ajuta de funcționalitățile din "Depune o sesizare":
         {"\n"}• apăsând pe email → se deschide aplicația de mail
         {"\n"}• apăsând pe telefon → poți apela direct
       </Text>
 
       <Text style={styles.text}>
-        Pentru Poliția Locală, vei putea selecta sectorul, iar aplicația va alege automat datele corecte.
+        6. Pentru spețele legate de Poliția Locală, vei putea selecta sectorul, iar aplicația va alege automat adresa de email corectă.
       </Text>
 
       <Text style={styles.text}>
-        Dacă nu găsești problema ta în listă, poți folosi opțiunea „Personalizat”.
+        7. Dacă nu găsești problema ta în listă dar totuși vrei să beneficiezi de funcționalitățile din "Depune o sesizare", poți folosi opțiunea „Personalizat”. În acest caz, vei copia manual o adresă de email din josul paginii și o vei lipi în aplicația de mail.
       </Text>
 
       <Text style={styles.text}>
-        În acest caz, vei copia manual o adresă de email și o vei lipi în aplicația de mail.
+        8. Aplicația NU stochează datele tale personale — totul este trimis prin aplicația ta de email.
       </Text>
 
       <Text style={styles.text}>
-        Aplicația NU stochează datele tale personale — totul este trimis prin aplicația ta de email.
+        9. Pentru conveniență, după prima sesizare trimisă cu succes, aplicația salvează local, pe telefonul tău, numele și adresa. Poți oricând să ștergi datele salvate apăsând "Șterge datele salvate".
       </Text>
     </ScrollView>
   );

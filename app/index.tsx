@@ -23,7 +23,7 @@ export default function HomeScreen() {
 
       <Link href="/cum-functioneaza" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Cum funcționează</Text>
+          <Text style={styles.buttonText}>Cum funcționează / Info.</Text>
         </Pressable>
       </Link>
     </View>

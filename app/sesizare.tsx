@@ -79,12 +79,21 @@ export default function SesizareScreen() {
   }, []);
 
   const allPublicEmails = useMemo(() => {
-    return institutions.flatMap((institution) =>
-      institution.publicEmails.map((email) => ({
+    return institutions.flatMap((institution) => {
+      // 🔴 POLIȚIA LOCALĂ (are sectoare)
+      if ((institution as any).sectors) {
+        return (institution as any).sectors.map((s: any) => ({
+          institutionTitle: `${institution.title} - ${s.sector}`,
+          email: s.email,
+        }));
+      }
+
+      // 🟢 RESTUL INSTITUȚIILOR
+      return (institution.publicEmails || []).map((email) => ({
         institutionTitle: institution.title,
         email,
-      }))
-    );
+      }));
+    });
   }, []);
 
   const isCustomIssue = selectedIssue.trim().toLowerCase() === "personalizat";
@@ -112,10 +121,14 @@ Subsemnatul(a): ${nume || "—"}
 
 Domiciliat(ă) în: ${adresa || "—"}
 
-Doresc să semnalez următoarea problemă: ${selectedIssue}.
-
-Locație: ${locatie}
-Detalii suplimentare: ${detalii || "Nu au fost adăugate detalii suplimentare."}
+${
+  isCustomIssue
+    ? ""
+    : `Doresc să semnalez următoarea problemă: ${selectedIssue}.\n\n`
+}Locație: ${locatie}
+Detalii: ${
+  detalii || "Nu au fost adăugate detalii suplimentare."
+}
 
 Vă rog să analizați situația și să dispuneți măsurile necesare.
 
@@ -256,7 +269,7 @@ Vă mulțumesc!
     if (isCustomIssue) {
       Alert.alert(
         "Selectează manual destinatarul",
-        'Pentru speța "Personalizat", copiază una dintre adresele afișate mai jos și lipește-o în câmpul "Destinatar" după ce se deschide aplicația de mail.'
+        'Pentru speța "Personalizat", ești responsabil să atașezi manual destinatarul în aplicația de mail.'
       );
     }
 
@@ -397,7 +410,7 @@ Vă mulțumesc!
 
       <TextInput
         style={[styles.input, styles.multiline]}
-        placeholder="Detalii suplimentare"
+        placeholder="Detalii"
         value={detalii}
         onChangeText={(text) => {
           setDetalii(text);
