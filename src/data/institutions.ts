@@ -1,7 +1,8 @@
 export type SectorContact = {
   sector: string;
   email: string;
-  phone: string;
+  phones: string[];
+  adress:string;
 };
 
 export type Institution = {
@@ -11,6 +12,7 @@ export type Institution = {
   instructions: string[];
   email?: string;
   phone?: string;
+  adress?:string;
   publicEmails: string[];
   sectors?: SectorContact[]; // DOAR pentru poliția locală
 };
@@ -33,12 +35,42 @@ export const institutions: Institution[] = [
     ],
     publicEmails: [],
     sectors: [
-      { sector: "Sector 1", email: "registratura@primarias1.ro", phone: "0219540" },
-      { sector: "Sector 2", email: "infopublice@ps2.ro", phone: "0219941" },
-      { sector: "Sector 3", email: "secretariat.dgpl@primarie3.ro", phone: "0219543" },
-      { sector: "Sector 4", email: "sesizari@politialocala4.ro", phone: "0219441" },
-      { sector: "Sector 5", email: "primarie@sector5.ro", phone: "0319451. 031.9885." },
-      { sector: "Sector 6", email: "contact@politia6.ro", phone: "0219546" },
+      {
+        sector: "Sector 1",
+        email: "registratura@primarias1.ro",
+        phones: ["0219540"],
+        address: "Bulevardul Banu Manta 9, București",
+      },
+      {
+        sector: "Sector 2",
+        email: "infopublice@ps2.ro",
+        phones: ["0219941"],
+        address: "Strada Chiristigiilor 11-13, București",
+      },
+      {
+        sector: "Sector 3",
+        email: "secretariat.dgpl@primarie3.ro",
+        phones: ["0219543"],
+        address: "Strada Lucrețiu Pătrășcanu 3-5, București",
+      },
+      {
+        sector: "Sector 4",
+        email: "sesizari@politialocala4.ro",
+        phones: ["0219441"],
+        address: "Strada Biserica Alexe 4, București",
+      },
+      {
+        sector: "Sector 5",
+        email: "primarie@sector5.ro",
+        phones: ["0319451", "0319885"],
+        address: "Strada Fabrica de Chibrituri 9-11, București",
+      },
+      {
+        sector: "Sector 6",
+        email: "contact@politia6.ro",
+        phones: ["0219546"],
+        address: "Șoseaua Orhideelor 2D, București",
+      },
     ],
   },
 
@@ -58,6 +90,7 @@ export const institutions: Institution[] = [
     email: "bpr@b.politiaromana.ro",
     phone: "0219544",
     publicEmails: ["bpr@b.politiaromana.ro"],
+    address: "Strada Logofăt Udriște 9-15, București",
   },
 
   {
@@ -76,6 +109,7 @@ export const institutions: Institution[] = [
     email: "office@aspmb.ro",
     phone: "0213151219",
     publicEmails: ["office@aspmb.ro"],
+    address: "Bulevardul Regina Elisabeta 47, București",
   },
 
   {
@@ -95,5 +129,6 @@ export const institutions: Institution[] = [
     email: "relatiipublice@pmb.ro",
     phone: "0319898",
     publicEmails: ["relatiipublice@pmb.ro"],
+    address: "Bulevardul Regina Elisabeta 47, București",
   },
 ];
