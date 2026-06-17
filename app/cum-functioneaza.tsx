@@ -46,7 +46,7 @@ export default function CumFunctioneazaScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20 },
-  title: { fontSize: 26, fontWeight: "700", marginBottom: 20 },
-  text: { fontSize: 16, marginBottom: 16, lineHeight: 22 },
+  container: { flex:1, backgroundColor: "#ffffff", padding: 20 },
+  title: { fontSize: 26, fontWeight: "700", marginBottom: 20, color: "#111111" },
+  text: { fontSize: 16, marginBottom: 16, lineHeight: 22, color: "#111111" },
 });

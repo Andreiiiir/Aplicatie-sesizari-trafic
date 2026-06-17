@@ -357,6 +357,7 @@ Vă mulțumesc!
       <TextInput
         style={styles.input}
         placeholder="Tipul problemei"
+        placeholderTextColor="#555555"
         value={problema}
         onChangeText={(text) => {
           setProblema(text);
@@ -368,6 +369,7 @@ Vă mulțumesc!
       <TextInput
         style={styles.input}
         placeholder="Nume complet"
+        placeholderTextColor="#555555"
         value={nume}
         onChangeText={setNume}
       />
@@ -375,6 +377,7 @@ Vă mulțumesc!
       <TextInput
         style={styles.input}
         placeholder="Adresă domiciliu / reședință"
+        placeholderTextColor="#555555"
         value={adresa}
         onChangeText={setAdresa}
       />
@@ -401,6 +404,7 @@ Vă mulțumesc!
       <TextInput
         style={styles.input}
         placeholder="Locația"
+        placeholderTextColor="#555555"
         value={locatie}
         onChangeText={(text) => {
           setLocatie(text);
@@ -411,6 +415,7 @@ Vă mulțumesc!
       <TextInput
         style={[styles.input, styles.multiline]}
         placeholder="Detalii"
+        placeholderTextColor="#555555"
         value={detalii}
         onChangeText={(text) => {
           setDetalii(text);

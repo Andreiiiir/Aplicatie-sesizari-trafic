@@ -4,17 +4,13 @@
     "slug": "seficbuc",
     "version": "1.0.0",
     "orientation": "portrait",
-
     "icon": "./assets/images/icon.png",
-
     "scheme": "seficbuc",
     "userInterfaceStyle": "automatic",
-
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "ro.seficbuc.app"
     },
-
     "android": {
       "package": "ro.seficbuc.app",
       "adaptiveIcon": {
@@ -22,20 +18,23 @@
         "backgroundColor": "#ffffff"
       }
     },
-
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
-
     "plugins": [
       "expo-router",
       "expo-mail-composer"
     ],
-
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "eb3b93c5-5a18-46d7-8bd4-c238c7467441"
+      }
+    }
   }
 }
