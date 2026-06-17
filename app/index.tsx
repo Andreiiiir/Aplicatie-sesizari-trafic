@@ -1,10 +1,54 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 import { Image } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from "react-native-reanimated";
+
+import {
+  useFonts,
+  PressStart2P_400Regular,
+} from "@expo-google-fonts/press-start-2p";
+import React from "react";
 
 export default function HomeScreen() {
+
+  const [fontsLoaded] = useFonts({
+    PressStart2P_400Regular,
+  });
+
+  const scale = useSharedValue(1);
+
+  React.useEffect(() => {
+    scale.value = withRepeat(
+      withSequence(
+        withTiming(1.03, { duration: 900 }),
+        withTiming(1, { duration: 900 })
+      ),
+      -1,
+      false
+    );
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
+      <Animated.Text
+        style={[styles.arcadeTitle, animatedStyle]}
+      >
+        SEFICBUC
+      </Animated.Text>
       <Text style={styles.title}>Sesizări Trafic</Text>
       <Text style={styles.subtitle}>
         Alege ce vrei să faci mai departe.
@@ -66,5 +110,12 @@ const styles = StyleSheet.create({
     height: 120,
     alignSelf: "center",
     marginBottom: 20,
+  },
+    arcadeTitle: {
+    fontFamily: "PressStart2P_400Regular",
+    fontSize: 24,
+    textAlign: "center",
+    marginBottom: 22,
+    letterSpacing: 2,
   },
 });

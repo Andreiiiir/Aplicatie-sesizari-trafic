@@ -1,54 +1,72 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { ThemeProvider, DefaultTheme, DarkTheme } from "@react-navigation/native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { KeyboardProvider } from "react-native-keyboard-controller";
+import { useColorScheme } from "@/hooks/use-color-scheme";
 
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-// NU mai apelăm direct aici
-// SplashScreen.preventAutoHideAsync();
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect, useState } from "react";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [appReady, setAppReady] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const prepare = async () => {
-      try {
-        // ținem splash-ul vizibil
-        await SplashScreen.preventAutoHideAsync();
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
 
-        // simulare inițializare app
-        await new Promise(resolve => setTimeout(resolve, 500));
+      // Splash minim 1 secundă
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        setAppReady(true);
-        await SplashScreen.hideAsync();
-      } catch (e) {
-        console.warn(e);
-      }
-    };
+      setReady(true);
+
+      await SplashScreen.hideAsync();
+    }
 
     prepare();
   }, []);
 
-  if (!appReady) {
-    return null; // menține splash-ul nativ
+  if (!ready) {
+    return null;
   }
 
   return (
     <KeyboardProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack
+          screenOptions={{
+            headerTitleAlign: "center",
+
+          }}
+        >
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              title: "",
+            }}
+          />
+
+          <Stack.Screen
+            name="institutii"
+            options={{
+              title: "Instituții",
+            }}
+          />
+
+          <Stack.Screen
+            name="sesizare"
+            options={{
+              title: "Depune o sesizare",
+            }}
+          />
+
+          <Stack.Screen
+            name="cum-functioneaza"
+            options={{
+              title: "Cum funcționează",
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

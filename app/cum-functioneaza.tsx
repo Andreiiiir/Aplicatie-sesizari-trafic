@@ -41,6 +41,11 @@ export default function CumFunctioneazaScreen() {
       <Text style={styles.text}>
         9. Pentru conveniență, după prima sesizare trimisă cu succes, aplicația salvează local, pe telefonul tău, numele și adresa. Poți oricând să ștergi datele salvate apăsând "Șterge datele salvate".
       </Text>
+
+      <Text style={styles.version}>
+        SeficBuc v1.0.1
+      </Text>
+
     </ScrollView>
   );
 }
@@ -49,4 +54,10 @@ const styles = StyleSheet.create({
   container: { flex:1, backgroundColor: "#ffffff", padding: 20 },
   title: { fontSize: 26, fontWeight: "700", marginBottom: 20, color: "#111111" },
   text: { fontSize: 16, marginBottom: 16, lineHeight: 22, color: "#111111" },
+  version: {
+  marginTop: 30,
+  textAlign: "center",
+  color: "#777",
+  fontSize: 14,
+},
 });
