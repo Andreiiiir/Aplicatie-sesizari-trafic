@@ -4,6 +4,8 @@ import { StatusBar } from "expo-status-bar";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
+import Splash from "../components/Splash";
+
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 
@@ -16,7 +18,7 @@ export default function RootLayout() {
       await SplashScreen.preventAutoHideAsync();
 
       // Splash minim 1 secundă
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setReady(true);
 
@@ -27,7 +29,7 @@ export default function RootLayout() {
   }, []);
 
   if (!ready) {
-    return null;
+    return <Splash />;
   }
 
   return (

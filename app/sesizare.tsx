@@ -5,6 +5,8 @@ import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
 import * as MailComposer from "expo-mail-composer";
 import { useMemo, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   View,
   Text,
@@ -29,6 +31,7 @@ function matchInstitution(issue: string) {
 }
 
 export default function SesizareScreen() {
+  const insets = useSafeAreaInsets();
   const [nume, setNume] = useState("");
   const [adresa, setAdresa] = useState("");
   const [problema, setProblema] = useState("");
@@ -292,28 +295,30 @@ Vă mulțumesc!
         return;
       }
 
-      if (result.status === "saved") {
-        setSuccessMessage(
-          isCustomIssue
-            ? "Sesizarea a fost pregătită ca draft. Dacă ai ales Personalizat, lipește manual adresa copiată în câmpul Destinatar."
-            : `Sesizarea a fost pregătită pentru ${institution?.title}. Verifică draftul din aplicația ta de mail.`
+    if (result.status === "saved") {
+        Alert.alert(
+          "Draft salvat",
+          "Emailul a fost salvat ca draft."
         );
         return;
       }
 
       await saveUserData();
 
+    if (result.status === "sent") {
       setSuccessMessage(
         isCustomIssue
-          ? "Sesizarea a fost pregătită și trimisă. Dacă ai ales Personalizat, verifică faptul că ai lipit manual adresa corectă în câmpul Destinatar."
-          : `Sesizarea a fost pregătită și trimisă către ${institution?.title}. Te rugăm să urmărești răspunsul pe mail.`
+          ? "Sesizarea a fost trimisă."
+          : `Sesizarea a fost trimisă către ${institution?.title}.`
       );
+    }
     } catch {
       Alert.alert("Eroare", "A apărut o problemă la deschiderea emailului.");
     }
   };
 
   return (
+  <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
     <KeyboardAwareScrollView
       bottomOffset={24}
       contentContainerStyle={styles.container}
@@ -533,6 +538,7 @@ Vă mulțumesc!
         </View>
       ) : null}
     </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
 

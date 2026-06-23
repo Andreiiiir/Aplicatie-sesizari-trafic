@@ -1,6 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Link } from "expo-router";
-import { Image } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -8,6 +7,8 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
+
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
   useFonts,
@@ -43,7 +44,10 @@ export default function HomeScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={styles.container}
+      edges={["top", "bottom"]}
+    >
       <Animated.Text
         style={[styles.arcadeTitle, animatedStyle]}
       >
@@ -71,14 +75,16 @@ export default function HomeScreen() {
           <Text style={styles.buttonText}>Cum funcționează / Info.</Text>
         </Pressable>
       </Link>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 32,
     justifyContent: "center",
     backgroundColor: "#fff",
   },
@@ -104,12 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
-  },
-    logo: {
-    width: 120,
-    height: 120,
-    alignSelf: "center",
-    marginBottom: 20,
   },
     arcadeTitle: {
     fontFamily: "PressStart2P_400Regular",

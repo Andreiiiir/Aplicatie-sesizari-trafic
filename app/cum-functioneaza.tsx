@@ -1,8 +1,17 @@
 import { ScrollView, Text, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CumFunctioneazaScreen() {
+  const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={styles.container}>
+  <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        paddingBottom: insets.bottom + 20,
+      }}
+    >
 
       <Text style={styles.text}>
         1. Aplicația "SeficBuc. - Sesizări trafic București" te ajută să trimiți rapid sesizări către instituțiile competente din București.
@@ -47,6 +56,7 @@ export default function CumFunctioneazaScreen() {
       </Text>
 
     </ScrollView>
+    </SafeAreaView>
   );
 }
 

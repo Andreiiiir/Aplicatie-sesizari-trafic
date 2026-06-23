@@ -1,7 +1,10 @@
 import { View, Text, ScrollView, StyleSheet, Pressable, Linking } from "react-native";
 import { institutions } from "../src/data/institutions";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function InstitutiiScreen() {
+  const insets = useSafeAreaInsets();
   const openEmail = (email: string) => {
     Linking.openURL(`mailto:${email}`);
   };
@@ -18,7 +21,8 @@ export default function InstitutiiScreen() {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
+      <ScrollView style={styles.container}>
       <Text style={styles.title}>Instituții</Text>
 
       {institutions.map((inst) => (
@@ -97,6 +101,7 @@ export default function InstitutiiScreen() {
         </View>
       ))}
     </ScrollView>
+    </SafeAreaView>
   );
 }
 

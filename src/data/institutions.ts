@@ -2,7 +2,7 @@ export type SectorContact = {
   sector: string;
   email: string;
   phones: string[];
-  adress:string;
+  address:string;
 };
 
 export type Institution = {
@@ -12,7 +12,7 @@ export type Institution = {
   instructions: string[];
   email?: string;
   phone?: string;
-  adress?:string;
+  address?:string;
   publicEmails: string[];
   sectors?: SectorContact[]; // DOAR pentru poliția locală
 };
